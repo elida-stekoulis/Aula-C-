@@ -180,6 +180,7 @@ using System;
  }
 */
 
+/*
 using System;
 
 class Program
@@ -226,3 +227,308 @@ class Program
         }
     }
 }
+*/
+
+/*
+// Importa a biblioteca System, que contém funções essenciais como o Console.
+using System;
+// Organiza nosso código em um "pacote" ou "projeto".
+namespace Menu_de_Premio;
+// A classe principal do nosso programa.
+class Program
+{   // O Main é o ponto de entrada. É aqui que a execução do programa começa.
+    static void Main()
+    {  // 1. Exibe um menu de opções para o usuário.
+        Console.WriteLine("Escolha o seu prêmio:");
+        Console.WriteLine("1");
+        Console.WriteLine("2");
+        Console.WriteLine("3");
+        Console.WriteLine("4");
+        Console.WriteLine("Digite uma opção:");
+        // 2. Lê a opção que o usuário digitou e guarda na variável 'opcao'.
+        // Console.ReadLine() sempre lê o texto (string).
+        string escolha = Console.ReadLine();
+
+        Console.WriteLine("--------------------------"); // Linha para organizar a saída.
+          // 3. A estrutura switch começa aqui. Ela vai avaliar o conteúdo da variável 'opcao'.
+        switch (escolha)
+        {   // Caso o valor de 'opcao' seja "1"
+            case "1":
+                Console.WriteLine("Você escolheu o Prêmio de R$ 500,00 reais!");
+                break; // O 'break' é essen'cial. Ele encerra o switch.
+            case "2":
+                Console.WriteLine("Você escolheu o Prêmio de R$ 1000,00 reais!");
+                break;
+            case "3":
+                Console.WriteLine("Você escolheu um carro!");
+                break;
+            case "4":
+                Console.WriteLine("Você escolheu o Prêmio de consolação - Um pirulito!");
+                break;
+            default:    // Se nenhum dos 'case' acima corresponder ao valor de 'opcao'.
+                Console.WriteLine("Opção inválida. Tente novamente.");
+                break; // Encerra o switch.
+        } 
+        // Mensagem final do programa.
+        Console.WriteLine("Obrigado por participar!");
+        Console.ReadKey(); // Espera o usuário pressionar uma tecla antes de fechar.
+    }
+}
+*/
+
+/*
+ Atividade Switch
+Enunciado:Você deve criar um programa que simule o menu de um caixa eletrônico. O programa precisa seguir os seguintes passos:
+Exibir um Menu: Mostre na tela as seguintes opções para o usuário:
+--- Caixa Eletrônico ---
+1 - Ver Saldo
+2 - Fazer Saque
+3 - Fazer Depósito
+Pedir uma Escolha: Solicite que o usuário digite o número da operação desejada.
+Processar a Escolha: Use uma estrutura switch para verificar o número que o usuário digitou.
+Se o usuário digitar "1", exiba a mensagem: Você escolheu a opção: VER SALDO.
+Se o usuário digitar "2", exiba a mensagem: Você escolheu a opção: FAZER SAQUE.
+Se o usuário digitar "3", exiba a mensagem: Você escolheu a opção: FAZER DEPÓSITO.
+Lidar com Erros: Se o usuário digitar qualquer outra coisa, o programa deve exibir a mensagem: Opção inválida.
+ 
+*/
+/*
+using System;
+
+namespace CaixaEletronico
+{
+    class Program
+    {
+        static void Main()
+        {
+            decimal saldo = 1500.00m; // Saldo inicial
+            bool continuar = true;
+
+            while (continuar)
+            {
+                Console.Clear();
+                Console.WriteLine("---- Caixa Eletrônico ----");
+                Console.WriteLine("1 - Ver Saldo");
+                Console.WriteLine("2 - Fazer Saque");
+                Console.WriteLine("3 - Fazer Depósito");
+                Console.WriteLine("0 - Sair");
+                Console.Write("\nDigite o número da operação desejada: ");
+
+                string escolha = Console.ReadLine();
+
+                switch (escolha)
+                {
+                    case "1":
+                        Console.WriteLine($"\nSeu saldo é R${saldo:F2}");
+                        break;
+
+                    case "2":
+                        Console.Write("Digite o valor que deseja sacar: ");
+
+                        if (decimal.TryParse(Console.ReadLine(), out decimal valorSaque))
+
+                        {
+                            if (valorSaque <= saldo)
+                            {
+                                saldo -= valorSaque;
+                                Console.WriteLine($"Saque de R${valorSaque:F2} realizado com sucesso!");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Saldo insuficiente.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Entrada inválida.");
+                        }
+                        break;
+
+                    case "3":
+                        Console.Write("\nDigite o valor do depósito: ");
+                        if (decimal.TryParse(Console.ReadLine(), out decimal valorDeposito) && valorDeposito > 0)
+                        {
+                            saldo += valorDeposito;
+                            Console.WriteLine($"Depósito de R${valorDeposito:F2} realizado com sucesso!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Valor inválido para depósito.");
+                        }
+                        break;
+
+                    case "0":
+                        continuar = false;
+                        Console.WriteLine("\nObrigado por usar o caixa eletrônico!");
+                        break;
+
+                    default:
+                        Console.WriteLine("Opção inválida. Tente novamente.");
+                        break;
+                }
+
+                if (continuar)
+                {
+                    Console.WriteLine("\nPressione qualquer tecla para continuar...");
+                    Console.ReadKey();
+                }
+            }
+        }
+    }
+}
+*/
+
+/*
+// Importa a biblioteca System, essencial para usar o Console.
+using System;
+
+// Namespace para organizar o nosso projeto.
+namespace JogoAdivinhacaoNumeros
+{
+    // Classe principal do programa.
+    class Program
+    {
+        // Ponto de entrada, onde o código começa a ser executado.
+        static void Main(string[] args)
+        {
+            // 1. Definimos o número que o usuário precisa adivinhar.
+            const int numeroSecreto = 7;
+
+            // 2. Criamos uma variável para guardar o palpite do usuário.
+            //    Inicializamos com 0 (ou qualquer número diferente do secreto).
+            int palpite = 0;
+
+            // 3. Exibimos as instruções do jogo.
+            Console.WriteLine("--- Jogo de Adivinhar o Número ---");
+            Console.WriteLine("Tente adivinhar o número secreto entre 1 e 10.");
+            Console.WriteLine("------------------------------------");
+
+            // 4. Início do loop while.
+            //    A condição é: "Enquanto o 'palpite' for diferente do 'numeroSecreto'".
+            while (palpite != numeroSecreto)
+            {
+                Console.Write("Digite seu palpite: ");
+                // Lê o que o usuário digitou como texto.
+                string inputDoUsuario = Console.ReadLine();
+
+                // Tenta converter o texto para um número inteiro.
+                // Se conseguir, 'sucesso' será true e o número irá para a variável 'palpite'.
+                // Se não conseguir (ex: usuário digitou "abc"), 'sucesso' será false.
+                bool sucesso = int.TryParse(inputDoUsuario, out palpite);
+
+                // 5. Verifica se a conversão deu certo.
+                if (sucesso)
+                {
+                    // Se a conversão foi bem-sucedida, verifica se o palpite está correto.
+                    if (palpite != numeroSecreto)
+                    {
+                        Console.WriteLine("Número incorreto. Tente novamente!");
+                    }
+                }
+                else
+                {
+                    // Se a conversão falhou, avisa o usuário.
+                    Console.WriteLine("Entrada inválida. Por favor, digite apenas números.");
+                }
+            }
+
+            // 6. Esta parte do código só é alcançada quando o loop termina,
+            //    ou seja, quando o usuário acerta o número.
+            Console.WriteLine("\n------------------------------------");
+            Console.WriteLine($"Parabéns! Você acertou! O número secreto era {numeroSecreto}!");
+            Console.WriteLine("------------------------------------");
+
+            Console.ReadKey(); // Pausa o programa antes de fechar.
+        }
+    }
+}
+*/
+
+/*
+//Tabuada com For
+// Importa a biblioteca System para usar o Console.
+
+using System;
+ 
+// Namespace para organizar nosso projeto.
+
+namespace TabuadaComFor
+
+{
+
+    // Classe principal do programa.
+
+    class Program
+
+    {
+
+        // Ponto de entrada do programa.
+
+        static void Main(string[] args)
+
+        {
+
+            Console.WriteLine("--- Programa de Tabuada ---");
+
+            Console.Write("Digite um número para ver a sua tabuada: ");
+
+            string input = Console.ReadLine();
+
+            int numeroEscolhido;
+
+            // Usamos TryParse para garantir que o usuário digitou um número válido.
+
+            if (int.TryParse(input, out numeroEscolhido))
+
+            {
+
+                Console.WriteLine($"\n--- Tabuada do {numeroEscolhido} ---");
+
+                // 1. Início do loop for.
+
+                //    - Inicialização: `int i = 1;` -> cria um contador 'i' começando em 1.
+
+                //    - Condição: `i <= 10;` -> o loop continuará ENQUANTO 'i' for menor ou igual a 10.
+
+                //    - Incremento: `i++` -> ao final de cada volta, aumenta o 'i' em 1.
+
+                for (int i = 1; i <= 10; i++)
+
+                {
+
+                    // 2. Dentro do loop, calculamos o resultado.
+
+                    int resultado = numeroEscolhido * i;
+
+                    // 3. Exibimos a linha da tabuada de forma formatada.
+
+                    //    A variável 'i' muda de valor a cada volta (1, 2, 3, ..., 10).
+
+                    Console.WriteLine($"{numeroEscolhido} x {i} = {resultado}");
+
+                }
+
+                Console.WriteLine("--------------------------");
+
+            }
+
+            else
+
+            {
+
+                // Mensagem de erro se a entrada não for um número.
+
+                Console.WriteLine("Entrada inválida. Por favor, execute o programa novamente e digite um número.");
+
+            }
+
+            Console.ReadKey(); // Pausa o programa.
+
+        }
+
+    }
+
+}
+*/
+
+
